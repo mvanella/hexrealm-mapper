@@ -1,0 +1,232 @@
+body {
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    font-family: sans-serif;
+}
+
+/* Scrollable map area */
+#scroll-container {
+    flex: 1;
+    overflow: scroll;
+    background: #000;
+}
+
+#map-container {
+    position: relative;
+    display: inline-block;
+    /* size to image natural size so scroll-container can scroll */
+    background: #000;
+    transform-origin: 0 0;
+    /* scale from top-left */
+}
+
+#map-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: none;
+}
+
+.hex {
+    position: absolute;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.0);
+    /* You will set width/height in JS based on image size */
+}
+
+/* Make hexes true hexagons using clip-path (flat-top orientation) */
+.hex {
+    -webkit-clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    background-clip: padding-box;
+    pointer-events: auto;
+}
+
+/* Hover and selected states */
+.hex {
+    transition: box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+.hex:hover {
+    background: rgba(255, 100, 100, 0.25);
+    box-shadow: 0 0 0 2px rgba(255, 100, 100, 0.6);
+}
+
+.hex.selected {
+    background: rgba(100, 150, 255, 0.3);
+    box-shadow: 0 0 0 3px rgba(0, 50, 200, 0.9);
+}
+
+.hex.hasData {
+    background: rgba(100, 255, 100, 0.25);
+    box-shadow: 0 0 0 2px rgba(0, 150, 0, 0.7);
+}
+
+.hex-emoji-display {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* center horizontally */
+    align-content: center;
+    /* center vertically */
+    gap: 4px;
+    padding: 4px;
+    font-size: 20px;
+    /* increase emoji size */
+    line-height: 1;
+    pointer-events: none;
+}
+
+/* Sidebar stays fixed */
+#sidebar {
+    width: 350px;
+    background: #f5f5f5;
+    border-left: 2px solid #ccc;
+    padding: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+#sidebar h2 {
+    margin-top: 0;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+#emoji-display {
+    margin-bottom: 1rem;
+}
+
+#emoji-display label {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+#selected-emojis {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    min-height: 2rem;
+    align-items: center;
+}
+
+.emoji-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.emoji-item:hover {
+    background: #ffe0e0;
+}
+
+.emoji-item button {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 0.875rem;
+    padding: 0;
+    margin-left: 0.25rem;
+}
+
+.emoji-item button:hover {
+    color: #d32f2f;
+}
+
+#emoji-picker-wrapper {
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    overflow: hidden;
+    max-height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+#emoji-picker {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.emoji-grid-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f5f5f5;
+}
+
+.emoji-grid-scroll::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.emoji-grid-scroll::-webkit-scrollbar-track {
+    background: #f5f5f5;
+}
+
+.emoji-grid-scroll::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.emoji-grid-scroll::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+#hex-notes {
+    flex: 1;
+    min-height: 150px;
+}
+
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+#button-group {
+    display: flex;
+    gap: 8px;
+}
+
+#save-btn,
+#clear-btn {
+    flex: 1;
+    padding: 8px 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+#save-btn:hover {
+    background: #0056b3;
+}
+
+#clear-btn {
+    background: #6c757d;
+}
+
+#clear-btn:hover {
+    background: #5a6268;
+}

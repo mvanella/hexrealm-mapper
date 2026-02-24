@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Batrakasz Interactive Map</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="scroll-container">
+        <div id="map-container">
+            <img id="map-image" src="EMDT97_Khosura_Batrakasz_Player.webp">
+        </div>
+    </div>
+
+    <div id="sidebar">
+        <h2>Hex Info</h2>
+        <div id="hex-id">Click a hex</div>
+
+        <div id="emoji-display" class="mb-3">
+            <label class="form-label">Emojis:</label>
+            <div id="selected-emojis" class="emoji-container"></div>
+            <button id="emoji-picker-btn" class="btn btn-sm btn-outline-secondary">Add Emoji</button>
+        </div>
+
+        <div id="emoji-picker-wrapper" style="display: none; margin-bottom: 1rem;">
+            <div id="emoji-picker"></div>
+        </div>
+
+        <textarea id="hex-notes" class="form-control mb-2"></textarea>
+        <div id="button-group">
+            <button id="save-btn" class="btn btn-primary">Save</button>
+            <button id="clear-btn" class="btn btn-secondary">Clear</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
